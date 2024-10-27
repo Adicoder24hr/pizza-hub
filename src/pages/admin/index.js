@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import Link from 'next/link';
 import { useState } from 'react';
+import Custom404 from '../404';
 
 const sidesPriceOptions= { single: "", double: "" };
 const pizzaPriceOptions= { regular: "", medium: "", large: "" };
@@ -35,7 +36,7 @@ const Admin = () => {
     };
 
     useEffect(() => {
-      if (JSON.parse(localStorage.getItem("isAdmin") === true)){
+      if (JSON.parse(localStorage.getItem("isAdmin")) === true){
         setMounted(true);
       }
     }, []);
@@ -59,6 +60,9 @@ const Admin = () => {
 
 
   return (
+
+    <>
+    {mounted ? 
     <div style={{minHeight: "90vh", 
       backgroundImage: 'url("https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")', 
       backgroundSize: "cover",
@@ -203,7 +207,12 @@ const Admin = () => {
             </form>
 
         </div>
-    </div>
+    </div> 
+    : 
+    <Custom404/>
+    }
+    
+    </>
   )
 }
 
